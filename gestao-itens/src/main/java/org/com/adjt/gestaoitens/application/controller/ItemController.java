@@ -44,4 +44,14 @@ public class ItemController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/baixa-estoque/{id}/{quantidade}")
+    public ResponseEntity<ItemResponse> baixaEstoque(@PathVariable String id, @PathVariable Integer quantidade) {
+        return ResponseEntity.ok(itemService.baixaEstoque(id, quantidade));
+    }
+
+    @PutMapping("/entrada-estoque/{id}/{quantidade}")
+    public ResponseEntity<ItemResponse> entradaEstoque(@PathVariable String id, @PathVariable Integer quantidade) {
+        return ResponseEntity.ok(itemService.entradaEstoque(id, quantidade));
+    }
 }

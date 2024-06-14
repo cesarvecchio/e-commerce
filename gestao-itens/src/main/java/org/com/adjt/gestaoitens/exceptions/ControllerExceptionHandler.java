@@ -24,4 +24,19 @@ public class ControllerExceptionHandler {
 
         return ResponseEntity.status(status).body(standardError);
     }
+
+    @ExceptionHandler(QuantidadeEstoqueException.class)
+    public ResponseEntity<StandardError> naoEncontradoException(QuantidadeEstoqueException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        StandardError standardError = new StandardError(
+                Instant.now(),
+                status.value(),
+                "Quantidade Estoque Exception",
+                e.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(status).body(standardError);
+    }
 }

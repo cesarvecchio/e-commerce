@@ -4,6 +4,7 @@ import org.com.adjt.gestaoitens.application.controller.request.ItemRequest;
 import org.com.adjt.gestaoitens.application.controller.response.ItemResponse;
 import org.com.adjt.gestaoitens.domain.entity.ItemEntity;
 import org.com.adjt.gestaoitens.exceptions.NaoEncontradoException;
+import org.com.adjt.gestaoitens.exceptions.QuantidadeEstoqueException;
 import org.com.adjt.gestaoitens.infrastructure.repository.ItemRepository;
 import org.com.adjt.gestaoitens.utils.Utils;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,22 @@ public class ItemService {
 
     public void deletarPorId(String id){
         itemRepository.delete(existePorId(id));
+    }
+
+    public ItemResponse baixaEstoque(String id, Integer quantidade){
+        ItemEntity itemEntity = existePorId(id);
+
+        itemEntity.baixaEstoque(quantidade);
+
+        return toResponse(itemRepository.save(itemEntity));
+    }
+
+    public ItemResponse entradaEstoque(String id, Integer quantidade){
+        ItemEntity itemEntity = existePorId(id);
+
+        itemEntity.entradaEstoque(quantidade);
+
+        return toResponse(itemRepository.save(itemEntity));
     }
 
 
