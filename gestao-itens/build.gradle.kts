@@ -41,6 +41,10 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.junit.platform:junit-platform-suite-api:1.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

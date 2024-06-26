@@ -23,7 +23,9 @@ public class ItemService {
     public ItemResponse criar(ItemRequest itemRequest){
         ItemEntity itemEntity = toEntity(itemRequest);
 
-        return toResponse(itemRepository.save(itemEntity));
+        itemEntity = itemRepository.save(itemEntity);
+
+        return toResponse(itemEntity);
     }
 
     public ItemResponse buscarPorId(String id){

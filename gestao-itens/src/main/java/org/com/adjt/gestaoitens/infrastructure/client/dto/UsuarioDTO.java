@@ -3,7 +3,7 @@ package org.com.adjt.gestaoitens.infrastructure.client.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.com.adjt.gestaoitens.utils.enums.UsuarioRole;
+import org.com.adjt.gestaoitens.domain.enums.UsuarioRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

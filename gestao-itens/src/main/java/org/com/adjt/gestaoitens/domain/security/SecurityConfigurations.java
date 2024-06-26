@@ -1,5 +1,6 @@
 package org.com.adjt.gestaoitens.domain.security;
 
+import org.com.adjt.gestaoitens.domain.enums.UsuarioRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -31,7 +32,7 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/itens").permitAll()
                         .requestMatchers(HttpMethod.GET, "/itens/{id}").permitAll()
-                        .requestMatchers("/itens").hasRole("ADMIN")
+                        .requestMatchers("/itens").hasRole(UsuarioRole.ADMIN.name())
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 @Data
-@NoArgsConstructor
 public class ItemEntity {
     @Id
     private String id;
