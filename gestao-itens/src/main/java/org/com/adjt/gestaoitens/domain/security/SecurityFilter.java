@@ -19,7 +19,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private final TokenService tokenService;
     private final UsuarioClient usuarioClient;
 
-    public SecurityFilter(TokenService tokenService, @Qualifier("usuarioClientMock") UsuarioClient usuarioClient) {
+    public SecurityFilter(TokenService tokenService, UsuarioClient usuarioClient) {
         this.tokenService = tokenService;
         this.usuarioClient = usuarioClient;
     }
@@ -29,7 +29,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         var token = this.recoverToken(request);
         if(token != null){
             var login = tokenService.validateToken(token);
-            UserDetails user = usuarioClient.findByLogin(login);
+            UserDetails user = usuarioClient.findByLogin(request.getHeader("Authorization"), login);
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);

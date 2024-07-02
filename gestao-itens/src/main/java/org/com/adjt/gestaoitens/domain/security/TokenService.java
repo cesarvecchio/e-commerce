@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
+    @Value("${api.security.token.issuer}")
+    private String issuer;
+
     public String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("auth-api")
+                    .withIssuer(issuer)
                     .build()
                     .verify(token)
                     .getSubject();
