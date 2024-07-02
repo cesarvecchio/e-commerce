@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name = "ms-user", path = "/user", configuration = FeignConfig.class)
 public interface UsuarioClient {
 
-//    @GetMapping("/login")
-//    UsuarioResponse login(@RequestBody UsuarioRequest usuarioRequest);
-
     @GetMapping("/{login}")
     UsuarioDTO findByLogin(@RequestHeader("Authorization") String token , @PathVariable String login);
 }
