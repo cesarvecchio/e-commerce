@@ -12,10 +12,10 @@ public class ConfigGateway {
     String msClienteUrl;
     @Value("${ms-produtos-url}")
     String msProdutosUrl;
-    @Value("${ms-pedidos-url}")
-    String msPedidosUrl;
-    @Value("${ms-logistica-entrega-url}")
-    String msLogisticaEntregaUrl;
+    @Value("${ms-carrinho-compras-url}")
+    String msCarrinhoComprasUrl;
+    @Value("${ms-pagamento-url}")
+    String msPagamentoUrl;
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
