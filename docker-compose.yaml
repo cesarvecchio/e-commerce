@@ -97,23 +97,23 @@ services:
     networks:
       - e-commerce
 
-#  pagamento:
-#    container_name: "pagamento"
-#    build:
-#      context: ./pagamento
-#    ports:
-#      - "8084:8084"
-#    depends_on:
-#      - banco-mongo
-#      - ms-user
-#      - carrinho-compras
-#    environment:
-#      DB_HOST: banco-mongo
-#      DB_PORT: 27017
-#      DB_DATABASE: db_carrinho
-#      USUARIO_URL: http://ms-user:8081
-#      ITENS_URL: http://carrinho-compras:8083
-#      JWT_SECRET: e-commerce_secret
-#      JWT_ISSUER: e-commerce_issuer
-#    networks:
-#      - e-commerce
+  pagamento:
+    container_name: "pagamento"
+    build:
+      context: ./ms-pagamento
+    ports:
+      - "8084:8084"
+    depends_on:
+      - banco-mongo
+      - ms-user
+      - carrinho-compras
+    environment:
+      DB_HOST: banco-mongo
+      DB_PORT: 27017
+      DB_DATABASE: db_carrinho
+      USUARIO_URL: http://ms-user:8081
+      ITENS_URL: http://carrinho-compras:8083
+      JWT_SECRET: e-commerce_secret
+      JWT_ISSUER: e-commerce_issuer
+    networks:
+      - e-commerce
