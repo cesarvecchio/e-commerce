@@ -22,9 +22,12 @@ public class ConfigGateway {
         return builder.routes()
                 .route("user", r -> r.path("/user/**")
                         .uri(msClienteUrl))
-
                 .route("gestao-itens", r -> r.path("/itens/**")
                         .uri(msProdutosUrl))
+                .route("carrinho", r -> r.path("/carrinho/**")
+                        .uri(msCarrinhoComprasUrl))
+                .route("pagamento", r -> r.path("/pagamentos/**")
+                        .uri(msPagamentoUrl))
                 .build();
     }
 
