@@ -5,7 +5,6 @@ import br.com.fiap.mspagamento.domain.enums.PagamentoEnum;
 import br.com.fiap.mspagamento.domain.enums.StatusEnum;
 import br.com.fiap.mspagamento.interfaces.carrinho.CarrinhoWebClient;
 import br.com.fiap.mspagamento.interfaces.carrinho.request.AtualizarCarrinhoDTO;
-import br.com.fiap.mspagamento.utils.Utils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -13,11 +12,9 @@ import reactor.core.publisher.Mono;
 public class PagamentoService {
 
     private final CarrinhoWebClient carrinhoWebClient;
-    private final Utils utils;
 
-    public PagamentoService(CarrinhoWebClient carrinhoWebClient, Utils utils) {
+    public PagamentoService(CarrinhoWebClient carrinhoWebClient) {
         this.carrinhoWebClient = carrinhoWebClient;
-        this.utils = utils;
     }
 
     public Mono<String> realizarPagamento(String token, PagamentoEnum formaPagamento) {

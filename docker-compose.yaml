@@ -112,7 +112,7 @@ services:
       DB_PORT: 27017
       DB_DATABASE: db_carrinho
       USUARIO_URL: http://ms-user:8081
-      ITENS_URL: http://carrinho-compras:8083
+      CARRINHO_URL: http://carrinho-compras:8083
       JWT_SECRET: e-commerce_secret
       JWT_ISSUER: e-commerce_issuer
     networks:
