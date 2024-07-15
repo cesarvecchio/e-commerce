@@ -98,7 +98,7 @@ services:
       - e-commerce
 
   pagamento:
-    container_name: "pagamento"
+    container_name: "ms-pagamento"
     build:
       context: ./ms-pagamento
     ports:
