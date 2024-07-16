@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "977fdcf4-ced5-40f8-85c1-5ebcba77353a",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12369015"
+	},
+	"item": [
+		{
+			"name": "Ms Usuario",
+			"item": [
+				{
+					"name": "Registrar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"alberto\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GATEWAY}}/user/register",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let token = pm.response.json().token;\r",
+									"pm.collectionVariables.set(\"TOKEN\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"alberto\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GATEWAY}}/user/login",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encontrar Usuario Por Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GATEWAY}}/user/:login",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"user",
+								":login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "login",
+									"value": "alberto"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gestão Itens",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Arroz\",\r\n    \"descricao\": \"Arroz Grupo Beneficiado, Subgrupo Polido, Classe Longo Fino Tipo 1, 1kg\",\r\n    \"categoria\": \"MERCEARIA\",\r\n    \"preco\": 10.00,\r\n    \"urlImagem\": \"https://http2.mlstatic.com/D_NQ_NP_2X_897796-MLB46536463581_062021-F.jpg\",\r\n    \"quantidade\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GATEWAY}}/itens",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"itens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_GESTAO_ITENS}}/itens/:id",
+							"host": [
+								"{{URL_GESTAO_ITENS}}"
+							],
+							"path": [
+								"itens",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6695b6ab4cabfc023b9b382f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GATEWAY}}/itens",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"itens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_GESTAO_ITENS}}/itens/66834bd8e17e2d109c936eb9",
+							"host": [
+								"{{URL_GESTAO_ITENS}}"
+							],
+							"path": [
+								"itens",
+								"66834bd8e17e2d109c936eb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_GESTAO_ITENS}}/itens/66834bd8e17e2d109c936eb9",
+							"host": [
+								"{{URL_GESTAO_ITENS}}"
+							],
+							"path": [
+								"itens",
+								"66834bd8e17e2d109c936eb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Baixa No Estoque",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{GATEWAY}}/itens/baixa-estoque/666a27cf216cb60ee023f83b/1",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"itens",
+								"baixa-estoque",
+								"666a27cf216cb60ee023f83b",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entrada No Estoque",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{GATEWAY}}/itens/entrada-estoque/666a27cf216cb60ee023f83b/1",
+							"host": [
+								"{{GATEWAY}}"
+							],
+							"path": [
+								"itens",
+								"entrada-estoque",
+								"666a27cf216cb60ee023f83b",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Carrinho de compras",
+			"item": [
+				{
+					"name": "Buscar Carrinho",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_CARRINHO_COMPRAS}}/carrinho",
+							"host": [
+								"{{URL_CARRINHO_COMPRAS}}"
+							],
+							"path": [
+								"carrinho"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Item no Carrinho",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_CARRINHO_COMPRAS}}/carrinho/adicionar?itemId=6695b6ab4cabfc023b9b382f&quantidade=6",
+							"host": [
+								"{{URL_CARRINHO_COMPRAS}}"
+							],
+							"path": [
+								"carrinho",
+								"adicionar"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "6695b6ab4cabfc023b9b382f"
+								},
+								{
+									"key": "quantidade",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Item do Carrinho",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL_CARRINHO_COMPRAS}}/carrinho/remover?itemId=667b47b25b98fc3596184875&quantidade=4",
+							"host": [
+								"{{URL_CARRINHO_COMPRAS}}"
+							],
+							"path": [
+								"carrinho",
+								"remover"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "667b47b25b98fc3596184875"
+								},
+								{
+									"key": "quantidade",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ms Pagamento",
+			"item": [
+				{
+					"name": "Pagar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"formaPagamento\" : \"PIX\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_PAGAMENTO}}/pagamentos/pagar",
+							"host": [
+								"{{URL_PAGAMENTO}}"
+							],
+							"path": [
+								"pagamentos",
+								"pagar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_GESTAO_ITENS",
+			"value": "localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "GATEWAY",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "URL_CARRINHO_COMPRAS",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "URL_PAGAMENTO",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
