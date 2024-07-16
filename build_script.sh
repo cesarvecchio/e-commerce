@@ -16,6 +16,10 @@ cd ../carrinhodecompras
 make build-project
 make build-docker
 
+cd ../ms-pagamento
+make build-project
+make build-docker
+
 cd ..
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
